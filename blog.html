@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Tips | Siso Academy</title>
+    
+    <meta name="description" content="Study tips, math strategies, and learning advice from Siso Academy. Improve your mathematics skills with our expert guidance.">
+    <meta name="keywords" content="Math Blog, Study Tips, Learning Strategies, Exam Prep, Mathematics">
+    <meta property="og:title" content="Blog & Tips | Siso Academy">
+    <meta property="og:description" content="Study tips and math learning strategies.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-hero {
+            padding: 10rem 5rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+        
+        .blog-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-hero h1 .maths-accent {
+            color: var(--orange);
+        }
+        
+        .blog-hero p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 600px;
+        }
+
+        .blog-filters {
+            padding: 2rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: var(--paper);
+        }
+
+        .blog-filter-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--ink);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .blog-filter-btn:hover, .blog-filter-btn.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .blog-card {
+            border-right: 2px solid var(--ink);
+            padding: 3rem;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            background: var(--paper2);
+        }
+
+        .blog-card:last-child {
+            border-right: none;
+        }
+
+        .blog-card:nth-child(3n) {
+            border-right: none;
+        }
+
+        .bc-category {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .bc-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .bc-excerpt {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            opacity: 0.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .bc-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            border-top: 1px solid var(--rule);
+            padding-top: 1rem;
+        }
+
+        .featured-blog {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .featured-image {
+            background: var(--ink);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-image::before {
+            content: '∫';
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(10rem, 25vw, 20rem);
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+        }
+
+        .featured-content {
+            padding: 5rem;
+            background: var(--paper);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-content .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .featured-content h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-content p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        .featured-link:hover {
+            text-decoration: underline;
+        }
+
+        .tips-section {
+            padding: 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .tips-section .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .tips-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .tip-card {
+            padding: 2rem;
+            border: 2px solid var(--ink);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            background: var(--paper2);
+            transform: translateY(-5px);
+        }
+
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .tip-title {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .tip-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            line-height: 1.6;
+            opacity: 0.6;
+        }
+
+        .newsletter-section {
+            padding: 5rem;
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.95rem;
+            opacity: 0.6;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: #fff;
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--orange);
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--orange);
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: #fff;
+            color: var(--ink);
+        }
+
+        @media (max-width: 1024px) {
+            .blog-hero { padding: 8rem 3rem 4rem; }
+            .blog-filters { padding: 1.5rem 3rem; }
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+            .blog-card:nth-child(2) { border-right: none; }
+            .blog-card:nth-child(3) { display: none; }
+            .featured-blog { grid-template-columns: 1fr; }
+            .featured-image { min-height: 300px; }
+            .featured-content { padding: 4rem 3rem; }
+            .tips-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero { padding: 7rem 1.5rem 3rem; }
+            .blog-filters { padding: 1rem 1.5rem; gap: 0.5rem; }
+            .blog-filter-btn { padding: 0.5rem 1rem; font-size: 0.65rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .blog-card { border-right: none; border-bottom: 2px solid var(--ink); }
+            .blog-card:nth-child(3) { display: block; }
+            .featured-content { padding: 3rem 1.5rem; }
+            .tips-section { padding: 3rem 1.5rem; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .newsletter-section { padding: 3rem 1.5rem; }
+            .newsletter-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <a href="lectures.html" class="nav-link">Lectures</a>
+                <a href="practice.html" class="nav-link">Practice</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="blog-hero">
+            <h1><span class="maths-accent">Study</span> Tips & Blog</h1>
+            <p>Learning strategies, math tips, and advice to help you master mathematics. Updated regularly with new insights.</p>
+        </section>
+
+        <div class="blog-filters">
+            <button class="blog-filter-btn active">All</button>
+            <button class="blog-filter-btn">Study Tips</button>
+            <button class="blog-filter-btn">Exam Prep</button>
+            <button class="blog-filter-btn">Math Strategies</button>
+            <button class="blog-filter-btn">Motivation</button>
+        </div>
+
+        <!-- Featured Post -->
+        <section class="featured-blog">
+            <div class="featured-image"></div>
+            <div class="featured-content">
+                <div class="sec-label">// Featured</div>
+                <h2>How to Study Math Effectively: A Complete Guide</h2>
+                <p>Stop memorising and start understanding. Learn the proven techniques that help students truly grasp mathematical concepts and ace their exams.</p>
+                <a href="#" class="featured-link">Read More →</a>
+            </div>
+        </section>
+
+        <section class="blog-grid">
+            <article class="blog-card">
+                <div class="bc-category">Study Tips</div>
+                <h3 class="bc-title">The Feynman Technique Explained</h3>
+                <p class="bc-excerpt">Learn any math concept by teaching it. Discover how explaining ideas in simple terms builds deeper understanding.</p>
+                <div class="bc-meta">
+                    <span>5 min read</span>
+                    <span>Jan 2026</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="bc-category">Exam Prep</div>
+                <h3 class="bc-title">10 Mistakes to Avoid in Math Exams</h3>
+                <p class="bc-excerpt">From careless errors to misreading questions, discover the common mistakes that cost students marks and how to avoid them.</p>
+                <div class="bc-meta">
+                    <span>7 min read</span>
+                    <span>Jan 2026</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="bc-category">Math Strategies</div>
+                <h3 class="bc-title">Building Intuition for Calculus</h3>
+                <p class="bc-excerpt">Calculus doesn't have to be scary. Learn how to build intuition for limits, derivatives, and integrals through visual thinking.</p>
+                <div class="bc-meta">
+                    <span>8 min read</span>
+                    <span>Dec 2025</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="bc-category">Study Tips</div>
+                <h3 class="bc-title">Spaced Repetition for Math</h3>
+                <p class="bc-excerpt">Why reviewing material at increasing intervals helps you remember formulas and concepts for exams.</p>
+                <div class="bc-meta">
+                    <span>6 min read</span>
+                    <span>Dec 2025</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="bc-category">Motivation</div>
+                <h3 class="bc-title">Why Can't I Get Math?</h3>
+                <p class="bc-excerpt">You CAN learn math. We address the fixed mindset that's holding you back and provide a growth mindset approach.</p>
+                <div class="bc-meta">
+                    <span>5 min read</span>
+                    <span>Nov 2025</span>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="bc-category">Exam Prep</div>
+                <h3 class="bc-title">Last Week Exam Prep Checklist</h3>
+                <p class="bc-excerpt">The ultimate guide to preparing for your math exam in the final week. What to review, what to practice, and what to skip.</p>
+                <div class="bc-meta">
+                    <span>10 min read</span>
+                    <span>Nov 2025</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="tips-section">
+            <div class="sec-label">// Quick Tips</div>
+            <h2>Study Smart Not Hard</h2>
+            <div class="tips-grid">
+                <article class="tip-card">
+                    <span class="tip-icon">📝</span>
+                    <h3 class="tip-title">Practice Daily</h3>
+                    <p class="tip-desc">Solve at least 5 problems every day to keep your skills sharp.</p>
+                </article>
+                <article class="tip-card">
+                    <span class="tip-icon">🔄</span>
+                    <h3 class="tip-title">Review Mistakes</h3>
+                    <p class="tip-desc">Every mistake is a learning opportunity. Understand why you got it wrong.</p>
+                </article>
+                <article class="tip-card">
+                    <span class="tip-icon">⏸️</span>
+                    <h3 class="tip-title">Take Breaks</h3>
+                    <p class="tip-desc">Your brain needs rest. Take short breaks every 45 minutes.</p>
+                </article>
+                <article class="tip-card">
+                    <span class="tip-icon">❓</span>
+                    <h3 class="tip-title">Ask Questions</h3>
+                    <p class="tip-desc">No question is dumb. Ask when you're stuck.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="newsletter-section">
+            <h2>Get Tips in Your Inbox</h2>
+            <p>Join thousands of students receiving weekly study tips and math insights.</p>
+            <form class="newsletter-form" onsubmit="submitNewsletter(event)">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        function submitNewsletter(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Thanks!';
+            btn.disabled = true;
+            setTimeout(() => {
+                e.target.reset();
+                btn.textContent = 'Subscribe';
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

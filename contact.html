@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Siso Academy</title>
+    
+    <meta name="description" content="Get in touch with Siso Academy. We'd love to hear from you — questions, suggestions, or collaborations.">
+    <meta name="keywords" content="Contact Siso Academy, Math Education, Get in Touch, Suggestions">
+    <meta property="og:title" content="Contact | Siso Academy">
+    <meta property="og:description" content="Get in touch with Siso Academy.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .contact-hero-left {
+            padding: 10rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 2px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .contact-hero-left h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-hero-left h1 .maths-accent {
+            color: var(--orange);
+        }
+
+        .contact-hero-left p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 500px;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cm-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cm-icon {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .cm-content h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .cm-content a, .cm-content span {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .cm-content a:hover {
+            color: var(--orange);
+        }
+
+        .contact-hero-right {
+            background: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            position: relative;
+        }
+
+        .contact-hero-right::before {
+            content: '∫';
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(15rem, 40vw, 30rem);
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .contact-form-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .contact-form-wrapper h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: #fff;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--orange);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-submit {
+            background: var(--orange);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background: #fff;
+            color: var(--ink);
+            transform: translateY(-2px);
+        }
+
+        .response-time {
+            padding: 4rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+            text-align: center;
+        }
+
+        .response-time h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .response-time p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .social-section {
+            padding: 4rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+        }
+
+        .social-section h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            color: var(--paper);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .contact-hero { grid-template-columns: 1fr; }
+            .contact-hero-left { padding: 8rem 3rem 4rem; border-right: none; border-bottom: 2px solid var(--ink); }
+            .contact-hero-right { padding: 4rem 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero-left { padding: 7rem 1.5rem 3rem; }
+            .contact-hero-right { padding: 3rem 1.5rem; }
+            .response-time { padding: 3rem 1.5rem; }
+            .social-section { padding: 3rem 1.5rem; }
+            .social-links { flex-direction: column; }
+            .social-link { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <a href="lectures.html" class="nav-link">Lectures</a>
+                <a href="practice.html" class="nav-link">Practice</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="contact-hero">
+            <div class="contact-hero-left">
+                <h1>Get In <span class="maths-accent">Touch</span></h1>
+                <p>Have a question, suggestion, or want to collaborate? We'd love to hear from you.</p>
+                
+                <div class="contact-methods">
+                    <div class="cm-item">
+                        <div class="cm-icon">✉</div>
+                        <div class="cm-content">
+                            <h4>Email</h4>
+                            <a href="mailto:hello@sisoacademy.com">hello@sisoacademy.com</a>
+                        </div>
+                    </div>
+                    <div class="cm-item">
+                        <div class="cm-icon">📺</div>
+                        <div class="cm-content">
+                            <h4>YouTube</h4>
+                            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">@SisoAcademy</a>
+                        </div>
+                    </div>
+                    <div class="cm-item">
+                        <div class="cm-icon">💬</div>
+                        <div class="cm-content">
+                            <h4>Social</h4>
+                            <span>@SisoAcademy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-hero-right">
+                <div class="contact-form-wrapper">
+                    <h2>Send a Message</h2>
+                    <form class="contact-form" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic...</option>
+                                <option value="general">General Question</option>
+                                <option value="suggestion">Topic Suggestion</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message →</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="response-time">
+            <h3>We typically respond within 48 hours</h3>
+            <p>Our small team reviews every message personally. We may not reply immediately, but we read everything and appreciate your patience.</p>
+        </section>
+
+        <section class="social-section">
+            <h3>Or connect with us on social media</h3>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="social-link">
+                    <span>▶</span> YouTube
+                </a>
+                <a href="#" class="social-link">
+                    <span>𝕏</span> Twitter/X
+                </a>
+                <a href="#" class="social-link">
+                    <span>📸</span> Instagram
+                </a>
+                <a href="#" class="social-link">
+                    <span>💼</span> LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-title reveal">
+                Prefer<br/>
+                <span class="outline">learning</span>?<br/>
+                Browse lectures
+            </div>
+            <div class="cta-right reveal">
+                <a href="lectures.html" class="btn-white">Start Learning →</a>
+                <div class="cta-note">Free · Step-by-step · Forever</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                e.target.reset();
+                btn.textContent = 'Send Message →';
+                btn.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

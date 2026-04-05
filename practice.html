@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Exercises | Siso Academy</title>
+    
+    <meta name="description" content="Practice mathematics exercises from Siso Academy. Test your understanding with topic-wise problems and detailed solutions.">
+    <meta name="keywords" content="Math Practice, Algebra Exercises, Calculus Problems, Geometry Practice, Siso Academy">
+    <meta property="og:title" content="Practice | Siso Academy">
+    <meta property="og:description" content="Free math practice exercises with solutions.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .practice-hero {
+            padding: 10rem 5rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+        
+        .practice-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .practice-hero h1 .maths-accent {
+            color: var(--orange);
+        }
+        
+        .practice-hero p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 600px;
+        }
+
+        .difficulty-filters {
+            padding: 2rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: var(--paper);
+        }
+
+        .diff-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--ink);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .diff-btn:hover, .diff-btn.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .diff-btn.easy { border-color: #22c55e; }
+        .diff-btn.easy:hover, .diff-btn.easy.active { background: #22c55e; color: #fff; }
+        .diff-btn.medium { border-color: #eab308; }
+        .diff-btn.medium:hover, .diff-btn.medium.active { background: #eab308; color: #fff; }
+        .diff-btn.hard { border-color: #ef4444; }
+        .diff-btn.hard:hover, .diff-btn.hard.active { background: #ef4444; color: #fff; }
+
+        .exercise-section {
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .exercise-header {
+            padding: 3rem 5rem 2rem;
+            background: var(--ink);
+            color: var(--paper);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .exercise-header .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .exercise-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .exercise-list {
+            padding: 0;
+        }
+
+        .exercise-item {
+            display: grid;
+            grid-template-columns: 60px 1fr auto auto;
+            border-bottom: 1px solid var(--rule);
+            padding: 2rem 5rem;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+
+        .ei-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .ei-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .ei-topic {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .ei-difficulty {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .ei-difficulty.easy { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+        .ei-difficulty.medium { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+        .ei-difficulty.hard { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+        .ei-toggle {
+            background: none;
+            border: 2px solid var(--ink);
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ei-toggle:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .ei-solution {
+            display: none;
+            grid-column: 1 / -1;
+            padding: 1.5rem 2rem;
+            background: var(--paper2);
+            margin: 0 5rem 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            border-left: 4px solid var(--orange);
+        }
+
+        .ei-solution.show {
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .practice-hero { padding: 8rem 3rem 4rem; }
+            .difficulty-filters { padding: 1.5rem 3rem; }
+            .exercise-header { padding: 2rem 3rem 1.5rem; }
+            .exercise-item { padding: 1.5rem 3rem; grid-template-columns: 50px 1fr auto; }
+            .ei-toggle { grid-column: 2; margin-top: 0.5rem; }
+            .ei-solution { margin: 0 3rem 1.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .practice-hero { padding: 7rem 1.5rem 3rem; }
+            .difficulty-filters { padding: 1rem 1.5rem; gap: 0.5rem; }
+            .diff-btn { padding: 0.5rem 1rem; font-size: 0.65rem; }
+            .exercise-header { padding: 2rem 1.5rem 1.5rem; }
+            .exercise-item { padding: 1.5rem; grid-template-columns: 40px 1fr; }
+            .ei-toggle { grid-column: span 2; }
+            .ei-solution { margin: 0 1.5rem 1.5rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <a href="lectures.html" class="nav-link">Lectures</a>
+                <a href="practice.html" class="nav-link active">Practice</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="practice-hero">
+            <h1><span class="maths-accent">Practice</span> Problems</h1>
+            <p>Test your understanding with carefully crafted exercises. Each problem comes with a detailed solution to help you learn.</p>
+        </section>
+
+        <div class="difficulty-filters">
+            <button class="diff-btn active">All Levels</button>
+            <button class="diff-btn easy">Easy</button>
+            <button class="diff-btn medium">Medium</button>
+            <button class="diff-btn hard">Hard</button>
+        </div>
+
+        <!-- Algebra Exercises -->
+        <section class="exercise-section">
+            <header class="exercise-header">
+                <div>
+                    <div class="sec-label">// Topic 01</div>
+                    <h2>Algebra</h2>
+                </div>
+                <span class="exercise-count">8 exercises</span>
+            </header>
+            <div class="exercise-list">
+                <article class="exercise-item">
+                    <div class="ei-num">01</div>
+                    <div>
+                        <div class="ei-question">Solve: 3x + 7 = 22</div>
+                        <div class="ei-topic">Linear Equations · Easy</div>
+                    </div>
+                    <span class="ei-difficulty easy">Easy</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        3x + 7 = 22<br>
+                        3x = 22 - 7<br>
+                        3x = 15<br>
+                        x = 15 ÷ 3<br>
+                        <strong>x = 5</strong>
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">02</div>
+                    <div>
+                        <div class="ei-question">If x² - 5x + 6 = 0, find the values of x.</div>
+                        <div class="ei-topic">Quadratic Equations · Medium</div>
+                    </div>
+                    <span class="ei-difficulty medium">Medium</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        x² - 5x + 6 = 0<br>
+                        Factor: (x - 2)(x - 3) = 0<br>
+                        x - 2 = 0 or x - 3 = 0<br>
+                        <strong>x = 2 or x = 3</strong>
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">03</div>
+                    <div>
+                        <div class="ei-question">Expand: (x + 3)(x² - x + 2)</div>
+                        <div class="ei-topic">Polynomials · Medium</div>
+                    </div>
+                    <span class="ei-difficulty medium">Medium</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        (x + 3)(x² - x + 2)<br>
+                        = x(x² - x + 2) + 3(x² - x + 2)<br>
+                        = x³ - x² + 2x + 3x² - 3x + 6<br>
+                        = <strong>x³ + 2x² - x + 6</strong>
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">04</div>
+                    <div>
+                        <div class="ei-question">Find the roots of x² + 6x + 9 = 0 using completing the square.</div>
+                        <div class="ei-topic">Quadratic Equations · Hard</div>
+                    </div>
+                    <span class="ei-difficulty hard">Hard</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        x² + 6x + 9 = 0<br>
+                        (x + 3)² = 0<br>
+                        x + 3 = 0<br>
+                        <strong>x = -3</strong> (repeated root)
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Calculus Exercises -->
+        <section class="exercise-section">
+            <header class="exercise-header">
+                <div>
+                    <div class="sec-label">// Topic 02</div>
+                    <h2>Calculus</h2>
+                </div>
+                <span class="exercise-count">6 exercises</span>
+            </header>
+            <div class="exercise-list">
+                <article class="exercise-item">
+                    <div class="ei-num">01</div>
+                    <div>
+                        <div class="ei-question">Find the derivative of f(x) = x³ - 2x² + 5x - 3</div>
+                        <div class="ei-topic">Differentiation · Easy</div>
+                    </div>
+                    <span class="ei-difficulty easy">Easy</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        f(x) = x³ - 2x² + 5x - 3<br>
+                        f'(x) = 3x² - 4x + 5
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">02</div>
+                    <div>
+                        <div class="ei-question">Evaluate: ∫(2x + 1)dx</div>
+                        <div class="ei-topic">Integration · Easy</div>
+                    </div>
+                    <span class="ei-difficulty easy">Easy</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        ∫(2x + 1)dx = x² + x + C
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">03</div>
+                    <div>
+                        <div class="ei-question">Find dY/dX if Y = (3x² + 2)⁴</div>
+                        <div class="ei-topic">Chain Rule · Medium</div>
+                    </div>
+                    <span class="ei-difficulty medium">Medium</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        Using chain rule: dY/dX = 4(3x² + 2)³ · 6x<br>
+                        = <strong>24x(3x² + 2)³</strong>
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">04</div>
+                    <div>
+                        <div class="ei-question">Evaluate: ∫x·eˣ dx</div>
+                        <div class="ei-topic">Integration by Parts · Hard</div>
+                    </div>
+                    <span class="ei-difficulty hard">Hard</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        Using integration by parts:<br>
+                        ∫u dv = uv - ∫v du<br>
+                        Let u = x, dv = eˣdx<br>
+                        = xeˣ - ∫eˣdx<br>
+                        = <strong>xeˣ - eˣ + C</strong>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Geometry Exercises -->
+        <section class="exercise-section">
+            <header class="exercise-header">
+                <div>
+                    <div class="sec-label">// Topic 03</div>
+                    <h2>Geometry</h2>
+                </div>
+                <span class="exercise-count">5 exercises</span>
+            </header>
+            <div class="exercise-list">
+                <article class="exercise-item">
+                    <div class="ei-num">01</div>
+                    <div>
+                        <div class="ei-question">Find the area of a triangle with base 8cm and height 5cm.</div>
+                        <div class="ei-topic">Area · Easy</div>
+                    </div>
+                    <span class="ei-difficulty easy">Easy</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        Area = ½ × base × height<br>
+                        = ½ × 8 × 5 = <strong>20 cm²</strong>
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">02</div>
+                    <div>
+                        <div class="ei-question">A circle has radius 7cm. Find its circumference.</div>
+                        <div class="ei-topic">Circles · Easy</div>
+                    </div>
+                    <span class="ei-difficulty easy">Easy</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        Circumference = 2πr = 2 × π × 7<br>
+                        = <strong>14π cm ≈ 43.98 cm</strong>
+                    </div>
+                </article>
+
+                <article class="exercise-item">
+                    <div class="ei-num">03</div>
+                    <div>
+                        <div class="ei-question">Find the distance between points (2, 3) and (5, 7).</div>
+                        <div class="ei-topic">Coordinate Geometry · Medium</div>
+                    </div>
+                    <span class="ei-difficulty medium">Medium</span>
+                    <button class="ei-toggle" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="ei-solution">
+                        <strong>Solution:</strong><br>
+                        Distance = √[(x₂-x₁)² + (y₂-y₁)²]<br>
+                        = √[(5-2)² + (7-3)²]<br>
+                        = √[3² + 4²] = √25 = <strong>5 units</strong>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-title reveal">
+                Need more<br/>
+                <span class="outline">help</span>?<br/>
+                Watch lectures
+            </div>
+            <div class="cta-right reveal">
+                <a href="lectures.html" class="btn-white">Browse Lectures →</a>
+                <div class="cta-note">Step-by-step video explanations</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleSolution(btn) {
+            const solution = btn.nextElementSibling;
+            solution.classList.toggle('show');
+            btn.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+        }
+
+        document.querySelectorAll('.diff-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

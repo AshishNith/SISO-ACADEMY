@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Siso Academy</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #0d0d0d;
+            --paper: #f4efe4;
+            --orange: #e8541e;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .error-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: clamp(8rem, 25vw, 15rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--orange);
+            opacity: 0.2;
+        }
+
+        .error-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .error-btn {
+            padding: 1rem 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--ink);
+            transition: all 0.3s;
+        }
+
+        .error-btn.primary {
+            background: var(--orange);
+            color: #fff;
+            border-color: var(--orange);
+        }
+
+        .error-btn.primary:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .error-btn.secondary {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .error-btn.secondary:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .math-decoration {
+            position: fixed;
+            font-family: 'Space Mono', monospace;
+            font-size: 10rem;
+            font-weight: 700;
+            color: var(--ink);
+            opacity: 0.02;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .math-1 { top: 10%; left: 5%; }
+        .math-2 { top: 50%; right: 10%; }
+        .math-3 { bottom: 10%; left: 15%; }
+
+        @media (max-width: 768px) {
+            .error-actions {
+                flex-direction: column;
+            }
+            
+            .error-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">Oops! The page you're looking for seems to have wandered off. Let's get you back on track.</p>
+        <div class="error-actions">
+            <a href="index.html" class="error-btn primary">← Go Home</a>
+            <a href="notes.html" class="error-btn secondary">Browse Notes</a>
+        </div>
+    </div>
+
+    <div class="math-decoration math-1">∑</div>
+    <div class="math-decoration math-2">∫</div>
+    <div class="math-decoration math-3">π</div>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | Siso Academy</title>
+    
+    <meta name="description" content="Download free mathematics notes from Siso Academy. Comprehensive study materials for Algebra, Calculus, Geometry, and more.">
+    <meta name="keywords" content="Mathematics Notes, Free Study Materials, Algebra Notes, Calculus Notes, Siso Academy">
+    <meta property="og:title" content="Notes | Siso Academy">
+    <meta property="og:description" content="Free mathematics notes for every topic.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .notes-hero {
+            padding: 10rem 5rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+        
+        .notes-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .notes-hero h1 .maths-accent {
+            color: var(--orange);
+        }
+        
+        .notes-hero p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 600px;
+        }
+        
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 2px solid var(--ink);
+        }
+        
+        .notes-card {
+            border-right: 2px solid var(--ink);
+            padding: 3rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .notes-card:hover {
+            background: var(--paper2);
+        }
+        
+        .notes-card:last-child {
+            border-right: none;
+        }
+        
+        .nc-chapter {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        
+        .nc-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+        
+        .nc-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            opacity: 0.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .nc-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+        
+        .nc-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+        
+        .nc-download:hover {
+            background: var(--ink);
+            transform: translateY(-2px);
+        }
+        
+        .filter-bar {
+            padding: 2rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: var(--paper);
+        }
+        
+        .filter-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--ink);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+        
+        @media (max-width: 1024px) {
+            .notes-hero { padding: 8rem 3rem 4rem; }
+            .notes-grid { grid-template-columns: repeat(2, 1fr); }
+            .notes-card:nth-child(2n) { border-right: none; }
+            .notes-card:nth-child(n+3) { border-top: 2px solid var(--ink); }
+        }
+        
+        @media (max-width: 768px) {
+            .notes-hero { padding: 7rem 1.5rem 3rem; }
+            .notes-hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+            .notes-hero p { font-size: 0.85rem; }
+            .notes-grid { grid-template-columns: 1fr; }
+            .notes-card { 
+                border-right: none !important; 
+                border-bottom: 2px solid var(--ink);
+                padding: 2rem 1.5rem;
+            }
+            .notes-card:last-child { border-bottom: none; }
+            .notes-card:nth-child(3) { grid-column: span 1; }
+            .filter-bar { padding: 1.5rem; gap: 0.5rem; }
+            .filter-btn { padding: 0.5rem 1rem; font-size: 0.65rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .notes-hero { padding: 6rem 1rem 2.5rem; }
+            .notes-hero h1 { font-size: clamp(1.75rem, 10vw, 2.5rem); }
+            .notes-hero p { font-size: 0.8rem; }
+            .notes-card { padding: 1.5rem 1rem; }
+            .nc-title { font-size: 1.1rem; }
+            .nc-desc { font-size: 0.7rem; }
+            .nc-download { padding: 0.6rem 1.25rem; font-size: 0.7rem; }
+            .filter-bar { 
+                padding: 1rem; 
+                gap: 0.5rem; 
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .filter-bar::-webkit-scrollbar { display: none; }
+            .filter-btn { white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link active">Notes</a>
+                <a href="lectures.html" class="nav-link">Lectures</a>
+                <a href="practice.html" class="nav-link">Practice</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="notes-hero">
+            <h1>Free <span class="maths-accent">Notes</span></h1>
+            <p>Comprehensive study materials designed to help you master each topic. Download PDF notes for every chapter — completely free.</p>
+        </section>
+
+        <div class="filter-bar">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Algebra</button>
+            <button class="filter-btn">Calculus</button>
+            <button class="filter-btn">Geometry</button>
+            <button class="filter-btn">Statistics</button>
+            <button class="filter-btn">Number Theory</button>
+        </div>
+
+        <section class="notes-grid">
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 01</div>
+                <h3 class="nc-title">Introduction to Algebra</h3>
+                <p class="nc-desc">Variables, expressions, and basic algebraic operations. Foundation concepts for all algebra topics.</p>
+                <div class="nc-meta">
+                    <span>12 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 02</div>
+                <h3 class="nc-title">Linear Equations</h3>
+                <p class="nc-desc">Solving single and multi-variable linear equations. Word problems and applications.</p>
+                <div class="nc-meta">
+                    <span>18 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 03</div>
+                <h3 class="nc-title">Quadratic Equations</h3>
+                <p class="nc-desc">Factorisation, completing the square, and the quadratic formula with worked examples.</p>
+                <div class="nc-meta">
+                    <span>22 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 04</div>
+                <h3 class="nc-title">Polynomials</h3>
+                <p class="nc-desc">Degree, roots, factor theorem, and polynomial division techniques.</p>
+                <div class="nc-meta">
+                    <span>16 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 05</div>
+                <h3 class="nc-title">Inequalities</h3>
+                <p class="nc-desc">Linear and quadratic inequalities, solution sets, and graphical representation.</p>
+                <div class="nc-meta">
+                    <span>14 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 01</div>
+                <h3 class="nc-title">Limits & Continuity</h3>
+                <p class="nc-desc">Foundation concepts of limits, continuity, and intuitive understanding of calculus.</p>
+                <div class="nc-meta">
+                    <span>20 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 02</div>
+                <h3 class="nc-title">Differentiation</h3>
+                <p class="nc-desc">Rules of differentiation, chain rule, product rule, and implicit differentiation.</p>
+                <div class="nc-meta">
+                    <span>28 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 03</div>
+                <h3 class="nc-title">Integration</h3>
+                <p class="nc-desc">Definite and indefinite integrals, integration techniques, and fundamental theorem.</p>
+                <div class="nc-meta">
+                    <span>32 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+
+            <article class="notes-card reveal-up">
+                <div class="nc-chapter">Chapter 01</div>
+                <h3 class="nc-title">Basic Geometry</h3>
+                <p class="nc-desc">Angles, triangles, quadrilaterals, and fundamental geometric properties.</p>
+                <div class="nc-meta">
+                    <span>15 pages</span>
+                    <span>PDF</span>
+                </div>
+                <button class="nc-download">↓ Download</button>
+            </article>
+        </section>
+
+        <section class="cta">
+            <div class="cta-title reveal">
+                Need help?<br/>
+                <span class="outline">Watch</span><br/>
+                the videos
+            </div>
+            <div class="cta-right reveal">
+                <a href="lectures.html" class="btn-white">Browse Lectures →</a>
+                <div class="cta-note">Step-by-step video explanations</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.nc-download').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Download feature coming soon! Check YouTube for video lessons.');
+            });
+        });
+    </script>
+</body>
+</html>

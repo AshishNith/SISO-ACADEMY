@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Siso Academy</title>
+    
+    <meta name="description" content="Learn about Siso Academy's mission to provide free mathematics education to students worldwide.">
+    <meta name="keywords" content="About Siso Academy, Free Education, Mathematics, Mission, Story">
+    <meta property="og:title" content="About | Siso Academy">
+    <meta property="og:description" content="Our mission is to make mathematics education free for everyone.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .about-hero-left {
+            padding: 10rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 2px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .about-hero-left h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .about-hero-left h1 .maths-accent {
+            color: var(--orange);
+        }
+
+        .about-hero-left p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            max-width: 500px;
+        }
+
+        .about-hero-right {
+            background: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero-right::before {
+            content: '∑';
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(15rem, 40vw, 30rem);
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .about-creator {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .about-creator-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--orange);
+            margin-bottom: 2rem;
+            background: var(--paper2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--orange);
+        }
+
+        .about-creator-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-creator-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--orange);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .mission-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .mission-content {
+            padding: 5rem;
+            border-right: 2px solid var(--ink);
+            background: var(--paper);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mission-content .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .mission-content p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+        }
+
+        .mission-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .ms-stat {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-right: 2px solid var(--ink);
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .ms-stat:last-child {
+            border-right: none;
+        }
+
+        .ms-stat:nth-child(2) {
+            border-right: none;
+        }
+
+        .ms-stat-num {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--orange);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .ms-stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .values-section {
+            padding: 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .values-section .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .values-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 4rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .value-card {
+            padding: 2rem;
+            border: 2px solid var(--ink);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            background: var(--paper2);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .value-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            opacity: 0.6;
+        }
+
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .story-content {
+            padding: 5rem;
+            border-right: 2px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .story-content .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .story-content p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-image {
+            background: var(--paper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .story-image::before {
+            content: 'f(x)';
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 700;
+            color: var(--ink);
+            opacity: 0.05;
+        }
+
+        .timeline-section {
+            padding: 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .timeline-section .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 4rem;
+        }
+
+        .timeline {
+            max-width: 700px;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--orange);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--orange);
+            border-radius: 50%;
+            transform: translateX(-5px);
+        }
+
+        .timeline-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .about-hero { grid-template-columns: 1fr; }
+            .about-hero-left { padding: 8rem 3rem 4rem; border-right: none; border-bottom: 2px solid var(--ink); }
+            .about-hero-right { padding: 4rem 3rem; }
+            .mission-section { grid-template-columns: 1fr; }
+            .mission-content { padding: 4rem 3rem; border-right: none; border-bottom: 2px solid var(--ink); }
+            .mission-stats { grid-template-columns: 1fr 1fr; }
+            .values-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .story-section { grid-template-columns: 1fr; }
+            .story-content { padding: 4rem 3rem; border-right: none; border-bottom: 2px solid var(--ink); }
+            .story-image { padding: 4rem 3rem; }
+            .timeline-section { padding: 4rem 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero-left { padding: 7rem 1.5rem 3rem; }
+            .about-hero-right { padding: 3rem 1.5rem; }
+            .about-creator-img { width: 150px; height: 150px; font-size: 3rem; }
+            .mission-content { padding: 3rem 1.5rem; }
+            .ms-stat { padding: 2rem 1.5rem; }
+            .ms-stat-num { font-size: 2.5rem; }
+            .values-section { padding: 3rem 1.5rem; }
+            .story-content { padding: 3rem 1.5rem; }
+            .story-image { padding: 3rem 1.5rem; min-height: 300px; }
+            .timeline-section { padding: 3rem 1.5rem; }
+            .timeline { padding-left: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <a href="lectures.html" class="nav-link">Lectures</a>
+                <a href="practice.html" class="nav-link">Practice</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-hero-left">
+                <h1>About <span class="maths-accent">Siso</span></h1>
+                <p>We believe every student deserves access to clear, patient mathematics education — regardless of where they are in the world or what they can afford.</p>
+            </div>
+            <div class="about-hero-right">
+                <div class="about-creator">
+                    <div class="about-creator-img">S</div>
+                    <div class="about-creator-name">Siso</div>
+                    <div class="about-creator-role">Founder & Instructor</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="mission-content">
+                <div class="sec-label">// Our Mission</div>
+                <h2>Making Math <span style="color: var(--orange);">Free</span> For Everyone</h2>
+                <p>Siso Academy was built on a single belief: mathematics education should be accessible to everyone, everywhere, completely free. We reject the idea that quality education should come with a price tag.</p>
+                <p>Our step-by-step lessons focus on genuine understanding rather than memorisation tricks. We want students to not just pass exams, but to truly grasp the concepts that make math beautiful and useful.</p>
+            </div>
+            <div class="mission-stats">
+                <div class="ms-stat">
+                    <div class="ms-stat-num">50+</div>
+                    <div class="ms-stat-label">Free Videos</div>
+                </div>
+                <div class="ms-stat">
+                    <div class="ms-stat-num">5</div>
+                    <div class="ms-stat-label">Topic Areas</div>
+                </div>
+                <div class="ms-stat">
+                    <div class="ms-stat-num">100%</div>
+                    <div class="ms-stat-label">Free Forever</div>
+                </div>
+                <div class="ms-stat">
+                    <div class="ms-stat-num">∞</div>
+                    <div class="ms-stat-label">Students Reached</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="sec-label">// Our Values</div>
+            <h2>What We Believe</h2>
+            <div class="values-grid">
+                <article class="value-card">
+                    <span class="value-icon">🎯</span>
+                    <h3 class="value-title">Clarity First</h3>
+                    <p class="value-desc">We explain the "why" not just the "how." Every concept is broken down from first principles with no assumed knowledge.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-icon">💯</span>
+                    <h3 class="value-title">100% Free</h3>
+                    <p class="value-desc">No hidden costs, no paywalls, no premium content. Everything we create is freely available forever.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-icon">🌍</span>
+                    <h3 class="value-title">Accessible Everywhere</h3>
+                    <p class="value-desc">Our content works on any device with internet access. Education shouldn't require expensive technology.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-icon">🔄</span>
+                    <h3 class="value-title">Learn At Your Pace</h3>
+                    <p class="value-desc">Pause, rewind, rewatch. Our videos are designed for self-paced learning without pressure.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-icon">📚</span>
+                    <h3 class="value-title">Depth Over Breadth</h3>
+                    <p class="value-desc">We'd rather explain one concept thoroughly than superficially cover ten. Mastery matters more than coverage.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-icon">🤝</span>
+                    <h3 class="value-title">Community Driven</h3>
+                    <p class="value-desc">Our content responds to student needs. Suggest topics, ask questions, help shape what we create next.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="story-content">
+                <div class="sec-label">// Our Story</div>
+                <h2>How It Started</h2>
+                <p>Siso Academy began with a simple observation: many students struggle with mathematics not because they're "bad at math," but because they've never been taught in a way that makes sense to them.</p>
+                <p>Traditional education often moves too fast, skips crucial steps, and relies on memorisation rather than understanding. We wanted to create something different — content that actually helps people <em>get</em> math.</p>
+                <p>What started as a few videos on YouTube has grown into a full library of lessons, notes, and practice problems. And this is just the beginning.</p>
+            </div>
+            <div class="story-image"></div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="sec-label">// Our Journey</div>
+            <h2>Key Milestones</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">Siso Academy Founded</h3>
+                    <p class="timeline-desc">First videos uploaded to YouTube. Started with basic algebra topics based on common student questions.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2024 Q3</div>
+                    <h3 class="timeline-title">100 Subscribers</h3>
+                    <p class="timeline-desc">Community begins growing. First comments start coming in about how lessons helped understand concepts for the first time.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <h3 class="timeline-title">50+ Videos Milestone</h3>
+                    <p class="timeline-desc">Content expanded to cover Calculus, Geometry, Statistics, and Number Theory. Added notes and practice problems.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <h3 class="timeline-title">Website Launch</h3>
+                    <p class="timeline-desc">Launched dedicated website with organized notes, lectures, and practice sections for easier navigation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-title reveal">
+                Ready to<br/>
+                <span class="outline">Start</span><br/>
+                Learning?
+            </div>
+            <div class="cta-right reveal">
+                <a href="lectures.html" class="btn-white">Browse Lectures →</a>
+                <div class="cta-note">Free · Step-by-step · Forever</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

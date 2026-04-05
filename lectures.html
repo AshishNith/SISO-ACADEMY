@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectures | Siso Academy</title>
+    
+    <meta name="description" content="Watch free mathematics lectures from Siso Academy. Step-by-step video lessons arranged chapter by chapter.">
+    <meta name="keywords" content="Mathematics Lectures, Video Lessons, Free Math Videos, Algebra, Calculus, Siso Academy">
+    <meta property="og:title" content="Lectures | Siso Academy">
+    <meta property="og:description" content="Free mathematics video lectures arranged chapter-wise.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lectures-hero {
+            padding: 10rem 5rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+        }
+        
+        .lectures-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .lectures-hero h1 .maths-accent {
+            color: var(--orange);
+        }
+        
+        .lectures-hero p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 600px;
+        }
+
+        .chapter-nav {
+            padding: 2rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            background: var(--paper);
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+        }
+        
+        .chapter-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.25rem;
+            border: 2px solid var(--ink);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .chapter-btn:hover, .chapter-btn.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .subject-section {
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .subject-header {
+            padding: 3rem 5rem 2rem;
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .subject-header .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .chapter-list {
+            padding: 0;
+        }
+
+        .chapter-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            border-bottom: 1px solid var(--rule);
+            padding: 2rem 5rem;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .chapter-item:last-child {
+            border-bottom: none;
+        }
+
+        .chapter-item:hover {
+            background: var(--paper2);
+        }
+
+        .ci-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--orange);
+            opacity: 0.5;
+        }
+
+        .ci-content h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .ci-content p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            opacity: 0.6;
+        }
+
+        .ci-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .ci-duration {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        .ci-watch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ci-watch:hover {
+            background: var(--ink);
+            transform: translateY(-2px);
+        }
+
+        .lecture-card {
+            border-right: 2px solid var(--ink);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .lecture-card:hover {
+            background: var(--paper2);
+        }
+
+        .lc-thumb {
+            aspect-ratio: 16/9;
+            background: var(--ink);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lc-thumb::before {
+            content: '▶';
+            font-size: 2rem;
+            color: var(--paper);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .lecture-card:hover .lc-thumb::before {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .lc-chapter {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .lc-title {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .lc-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 1024px) {
+            .lectures-hero { padding: 8rem 3rem 4rem; }
+            .chapter-nav { padding: 1.5rem 3rem; }
+            .subject-header { padding: 2rem 3rem 1.5rem; }
+            .chapter-item { padding: 1.5rem 3rem; grid-template-columns: 60px 1fr; }
+            .ci-meta { margin-top: 1rem; grid-column: span 2; }
+            .ci-num { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .lectures-hero { padding: 7rem 1.5rem 3rem; }
+            .lectures-hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+            .lectures-hero p { font-size: 0.85rem; }
+            .chapter-nav { 
+                padding: 1rem 1.5rem; 
+                top: 70px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                flex-wrap: nowrap;
+                scrollbar-width: none;
+            }
+            .chapter-nav::-webkit-scrollbar { display: none; }
+            .chapter-btn { 
+                padding: 0.5rem 1rem; 
+                font-size: 0.6rem;
+                white-space: nowrap;
+            }
+            .subject-header { padding: 2rem 1.5rem 1.5rem; }
+            .subject-header h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .chapter-item { 
+                padding: 1.5rem; 
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .ci-num { font-size: 1.25rem; margin-bottom: 0.5rem; }
+            .ci-content h3 { font-size: 1rem; }
+            .ci-content p { font-size: 0.75rem; }
+            .ci-meta { 
+                grid-column: span 1; 
+                margin-top: 0.75rem; 
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .ci-watch { width: 100%; justify-content: center; }
+        }
+        
+        @media (max-width: 480px) {
+            .lectures-hero { padding: 6rem 1rem 2.5rem; }
+            .lectures-hero h1 { font-size: clamp(1.75rem, 10vw, 2.5rem); }
+            .lectures-hero p { font-size: 0.8rem; }
+            .chapter-nav { 
+                padding: 0.75rem 1rem; 
+                top: 60px;
+                gap: 0.4rem;
+            }
+            .chapter-btn { padding: 0.5rem 0.85rem; font-size: 0.55rem; }
+            .subject-header { padding: 1.5rem 1rem; }
+            .subject-header h2 { font-size: clamp(1.25rem, 7vw, 1.75rem); }
+            .chapter-item { padding: 1.25rem 1rem; }
+            .ci-content h3 { font-size: 0.95rem; }
+            .ci-content p { font-size: 0.7rem; }
+            .ci-watch { font-size: 0.7rem; padding: 0.6rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <a href="lectures.html" class="nav-link active">Lectures</a>
+                <a href="practice.html" class="nav-link">Practice</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lectures-hero">
+            <h1>Video <span class="maths-accent">Lectures</span></h1>
+            <p>Step-by-step video lessons arranged chapter-by-chapter. Watch and learn at your own pace. Free forever.</p>
+        </section>
+
+        <nav class="chapter-nav">
+            <button class="chapter-btn active">All</button>
+            <button class="chapter-btn">Algebra</button>
+            <button class="chapter-btn">Calculus</button>
+            <button class="chapter-btn">Geometry</button>
+            <button class="chapter-btn">Statistics</button>
+            <button class="chapter-btn">Number Theory</button>
+        </nav>
+
+        <!-- Algebra Section -->
+        <section class="subject-section" id="algebra">
+            <header class="subject-header">
+                <div class="sec-label">// Topic 01</div>
+                <h2>Algebra</h2>
+            </header>
+            <div class="chapter-list">
+                <article class="chapter-item">
+                    <div class="ci-num">01</div>
+                    <div class="ci-content">
+                        <h3>Introduction to Algebra</h3>
+                        <p>Understanding variables, expressions, and basic algebraic operations. Building foundations for advanced topics.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">45 min</span>
+                        <a href="https://www.youtube.com/watch?v=example1" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">02</div>
+                    <div class="ci-content">
+                        <h3>Linear Equations in One Variable</h3>
+                        <p>Solving linear equations, checking solutions, and applying to real-world word problems.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">52 min</span>
+                        <a href="https://www.youtube.com/watch?v=example2" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">03</div>
+                    <div class="ci-content">
+                        <h3>Linear Equations in Two Variables</h3>
+                        <p>Graphing linear equations, slope-intercept form, and systems of equations.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">58 min</span>
+                        <a href="https://www.youtube.com/watch?v=example3" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">04</div>
+                    <div class="ci-content">
+                        <h3>Quadratic Equations - Factorisation</h3>
+                        <p>Solving quadratics by factorisation, zero product property, and practical applications.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">65 min</span>
+                        <a href="https://www.youtube.com/watch?v=example4" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">05</div>
+                    <div class="ci-content">
+                        <h3>Quadratic Equations - Formula</h3>
+                        <p>Deriving and applying the quadratic formula, discriminant, and nature of roots.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">70 min</span>
+                        <a href="https://www.youtube.com/watch?v=example5" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">06</div>
+                    <div class="ci-content">
+                        <h3>Polynomials - Introduction</h3>
+                        <p>Understanding polynomials, degree, and basic operations with polynomial expressions.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">55 min</span>
+                        <a href="https://www.youtube.com/watch?v=example6" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">07</div>
+                    <div class="ci-content">
+                        <h3>Factor Theorem & Polynomial Division</h3>
+                        <p>Remainder theorem, factor theorem, and long division of polynomials.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">62 min</span>
+                        <a href="https://www.youtube.com/watch?v=example7" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">08</div>
+                    <div class="ci-content">
+                        <h3>Inequalities</h3>
+                        <p>Linear and quadratic inequalities, solution sets, and graphical representation.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">48 min</span>
+                        <a href="https://www.youtube.com/watch?v=example8" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Calculus Section -->
+        <section class="subject-section" id="calculus">
+            <header class="subject-header">
+                <div class="sec-label">// Topic 02</div>
+                <h2>Calculus</h2>
+            </header>
+            <div class="chapter-list">
+                <article class="chapter-item">
+                    <div class="ci-num">01</div>
+                    <div class="ci-content">
+                        <h3>Introduction to Limits</h3>
+                        <p>Understanding limits, left-hand and right-hand limits, and the concept of continuity.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">58 min</span>
+                        <a href="https://www.youtube.com/watch?v=example9" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">02</div>
+                    <div class="ci-content">
+                        <h3>Evaluating Limits</h3>
+                        <p>Techniques for evaluating limits: substitution, factoring, and rationalisation.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">62 min</span>
+                        <a href="https://www.youtube.com/watch?v=example10" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">03</div>
+                    <div class="ci-content">
+                        <h3>Continuity</h3>
+                        <p>Continuous functions, intermediate value theorem, and identifying discontinuities.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">45 min</span>
+                        <a href="https://www.youtube.com/watch?v=example11" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">04</div>
+                    <div class="ci-content">
+                        <h3>Introduction to Derivatives</h3>
+                        <p>Understanding derivatives as rate of change, tangent lines, and the limit definition.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">68 min</span>
+                        <a href="https://www.youtube.com/watch?v=example12" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">05</div>
+                    <div class="ci-content">
+                        <h3>Differentiation Rules</h3>
+                        <p>Power rule, product rule, quotient rule, and chain rule for differentiation.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">72 min</span>
+                        <a href="https://www.youtube.com/watch?v=example13" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">06</div>
+                    <div class="ci-content">
+                        <h3>Applications of Differentiation</h3>
+                        <p>Related rates, optimization problems, and curve sketching using derivatives.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">75 min</span>
+                        <a href="https://www.youtube.com/watch?v=example14" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">07</div>
+                    <div class="ci-content">
+                        <h3>Introduction to Integration</h3>
+                        <p>Understanding integration as the reverse of differentiation, antiderivatives.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">60 min</span>
+                        <a href="https://www.youtube.com/watch?v=example15" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">08</div>
+                    <div class="ci-content">
+                        <h3>Integration Techniques</h3>
+                        <p>U-substitution, integration by parts, and fundamental theorem of calculus.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">78 min</span>
+                        <a href="https://www.youtube.com/watch?v=example16" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Geometry Section -->
+        <section class="subject-section" id="geometry">
+            <header class="subject-header">
+                <div class="sec-label">// Topic 03</div>
+                <h2>Geometry</h2>
+            </header>
+            <div class="chapter-list">
+                <article class="chapter-item">
+                    <div class="ci-num">01</div>
+                    <div class="ci-content">
+                        <h3>Basic Geometry - Angles & Triangles</h3>
+                        <p>Types of angles, triangle properties, and angle sum theorem.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">50 min</span>
+                        <a href="https://www.youtube.com/watch?v=example17" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">02</div>
+                    <div class="ci-content">
+                        <h3>Congruence & Similarity</h3>
+                        <p>Congruent and similar triangles, criteria, and practical applications.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">55 min</span>
+                        <a href="https://www.youtube.com/watch?v=example18" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">03</div>
+                    <div class="ci-content">
+                        <h3>Circles</h3>
+                        <p>Circle properties, tangents, chords, arcs, and circle theorems.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">58 min</span>
+                        <a href="https://www.youtube.com/watch?v=example19" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">04</div>
+                    <div class="ci-content">
+                        <h3>Area & Perimeter</h3>
+                        <p>Calculating area and perimeter of various 2D shapes and composite figures.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">52 min</span>
+                        <a href="https://www.youtube.com/watch?v=example20" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">05</div>
+                    <div class="ci-content">
+                        <h3>Surface Area & Volume</h3>
+                        <p>3D geometry: surface area and volume of prisms, cylinders, cones, and spheres.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">65 min</span>
+                        <a href="https://www.youtube.com/watch?v=example21" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">06</div>
+                    <div class="ci-content">
+                        <h3>Coordinate Geometry</h3>
+                        <p>Distance formula, section formula, and equation of lines in coordinate plane.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">60 min</span>
+                        <a href="https://www.youtube.com/watch?v=example22" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="subject-section" id="statistics">
+            <header class="subject-header">
+                <div class="sec-label">// Topic 04</div>
+                <h2>Statistics</h2>
+            </header>
+            <div class="chapter-list">
+                <article class="chapter-item">
+                    <div class="ci-num">01</div>
+                    <div class="ci-content">
+                        <h3>Data Representation</h3>
+                        <p>Tables, bar charts, histograms, and various ways to represent statistical data.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">42 min</span>
+                        <a href="https://www.youtube.com/watch?v=example23" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">02</div>
+                    <div class="ci-content">
+                        <h3>Measures of Central Tendency</h3>
+                        <p>Mean, median, and mode: understanding and calculating average values.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">48 min</span>
+                        <a href="https://www.youtube.com/watch?v=example24" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">03</div>
+                    <div class="ci-content">
+                        <h3>Measures of Dispersion</h3>
+                        <p>Range, variance, and standard deviation: understanding data spread.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">52 min</span>
+                        <a href="https://www.youtube.com/watch?v=example25" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">04</div>
+                    <div class="ci-content">
+                        <h3>Probability Basics</h3>
+                        <p>Introduction to probability, sample spaces, and basic probability rules.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">55 min</span>
+                        <a href="https://www.youtube.com/watch?v=example26" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">05</div>
+                    <div class="ci-content">
+                        <h3>Probability Distributions</h3>
+                        <p>Binomial distribution, expected value, and probability distributions.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">62 min</span>
+                        <a href="https://www.youtube.com/watch?v=example27" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Number Theory Section -->
+        <section class="subject-section" id="number-theory">
+            <header class="subject-header">
+                <div class="sec-label">// Topic 05</div>
+                <h2>Number Theory</h2>
+            </header>
+            <div class="chapter-list">
+                <article class="chapter-item">
+                    <div class="ci-num">01</div>
+                    <div class="ci-content">
+                        <h3>Divisibility</h3>
+                        <p>Understanding divisibility rules, factors, and multiples.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">40 min</span>
+                        <a href="https://www.youtube.com/watch?v=example28" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">02</div>
+                    <div class="ci-content">
+                        <h3>Prime Numbers</h3>
+                        <p>Understanding primes, prime factorisation, and sieve of Eratosthenes.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">45 min</span>
+                        <a href="https://www.youtube.com/watch?v=example29" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">03</div>
+                    <div class="ci-content">
+                        <h3>HCF & LCM</h3>
+                        <p>Highest common factor and least common multiple: methods and applications.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">48 min</span>
+                        <a href="https://www.youtube.com/watch?v=example30" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">04</div>
+                    <div class="ci-content">
+                        <h3>Modular Arithmetic</h3>
+                        <p>Introduction to modular arithmetic, congruences, and their applications.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">55 min</span>
+                        <a href="https://www.youtube.com/watch?v=example31" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+
+                <article class="chapter-item">
+                    <div class="ci-num">05</div>
+                    <div class="ci-content">
+                        <h3>Diophantine Equations</h3>
+                        <p>Integer solutions to equations, linear Diophantine equations.</p>
+                    </div>
+                    <div class="ci-meta">
+                        <span class="ci-duration">58 min</span>
+                        <a href="https://www.youtube.com/watch?v=example32" target="_blank" class="ci-watch">▶ Watch</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-title reveal">
+                Prefer reading?<br/>
+                <span class="outline">Download</span><br/>
+                the notes
+            </div>
+            <div class="cta-right reveal">
+                <a href="notes.html" class="btn-white">Browse Notes →</a>
+                <div class="cta-note">Free PDF study materials</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.chapter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.textContent;
+                document.querySelectorAll('.subject-section').forEach(section => {
+                    if (filter === 'All') {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = section.id.toLowerCase() === filter.toLowerCase() ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.chapter-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

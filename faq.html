@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Siso Academy</title>
+    
+    <meta name="description" content="Frequently asked questions about Siso Academy. Learn about our free math lessons, notes, and video lectures.">
+    <meta name="keywords" content="FAQ, Mathematics, Free Education, Questions, Siso Academy">
+    <meta property="og:title" content="FAQ | Siso Academy">
+    <meta property="og:description" content="Common questions about Siso Academy.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .faq-hero {
+            padding: 10rem 5rem 5rem;
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+            text-align: center;
+        }
+        
+        .faq-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .faq-hero h1 .maths-accent {
+            color: var(--orange);
+        }
+        
+        .faq-hero p {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-section {
+            padding: 4rem 5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .faq-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-section-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--rule);
+            padding: 1.5rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--orange);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '−';
+            color: var(--orange);
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .contact-cta {
+            padding: 5rem;
+            text-align: center;
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .contact-cta h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.95rem;
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--orange);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            background: var(--paper);
+            color: var(--ink);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .faq-hero { padding: 8rem 1.5rem 4rem; }
+            .faq-section { padding: 3rem 1.5rem; }
+            .faq-question { font-size: 1rem; }
+            .faq-answer { font-size: 0.85rem; }
+            .contact-cta { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+                </a>
+                <a href="index.html">Siso<span>.</span>Academy</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <a href="lectures.html" class="nav-link">Lectures</a>
+                <a href="practice.html" class="nav-link">Practice</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="https://www.youtube.com/@SisoAcademy" target="_blank" class="nav-cta" id="youtube-cta">YouTube ↗</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="faq-hero">
+            <h1>Frequently <span class="maths-accent">Asked</span> Questions</h1>
+            <p>Everything you need to know about Siso Academy. Can't find your answer? Reach out to us.</p>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-section-title">// Getting Started</div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I access the free lessons?</div>
+                <div class="faq-answer">
+                    All our lessons are available on our <a href="lectures.html" style="color: var(--orange);">Lectures page</a>. Each video is hosted on YouTube and can be watched completely free. No sign-up or subscription required.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do I need any prerequisites to start learning?</div>
+                <div class="faq-answer">
+                    No! Our courses start from the basics. Each topic begins with foundational concepts and builds up to more advanced material. You can start with whichever topic interests you most.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I download the notes as PDF?</div>
+                <div class="faq-answer">
+                    Yes! Our <a href="notes.html" style="color: var(--orange);">Notes page</a> contains downloadable PDF materials for each topic. All notes are completely free. The download feature will be available soon.
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-section-title">// About the Content</div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What topics are covered?</div>
+                <div class="faq-answer">
+                    We cover 5 main areas: <strong>Algebra</strong> (equations, polynomials, inequalities), <strong>Calculus</strong> (limits, differentiation, integration), <strong>Geometry</strong> (shapes, proofs, coordinate geometry), <strong>Statistics</strong> (probability, distributions), and <strong>Number Theory</strong> (primes, modular arithmetic).
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Are the lessons suitable for exam preparation?</div>
+                <div class="faq-answer">
+                    Absolutely! Our step-by-step approach is designed to build genuine understanding that helps with exams. Many students have improved their results after following our lessons. We focus on concepts rather than memorisation tricks.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How long is each video lesson?</div>
+                <div class="faq-answer">
+                    Video lengths vary by topic and complexity. Most lessons range from 30 minutes to 1 hour, covering the topic in depth with worked examples. You can always pause and rewatch any section.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do you have practice problems?</div>
+                <div class="faq-answer">
+                    Yes! Check out our <a href="practice.html" style="color: var(--orange);">Practice page</a> for exercises with solutions. We have problems ranging from easy to hard, so you can test your understanding at any level.
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-section-title">// Costs & Access</div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is everything really free?</div>
+                <div class="faq-answer">
+                    Yes! All videos, notes, and practice problems are completely free. We believe everyone deserves access to quality mathematics education. Siso Academy will always be free.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do you sustain the free content?</div>
+                <div class="faq-answer">
+                    Siso Academy is supported by the YouTube Partner Program and generous supporters who believe in free education. If you'd like to support us, subscribe to our YouTube channel and share our content.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is there any premium content?</div>
+                <div class="faq-answer">
+                    No. All our content remains free. There are no paywalls, subscriptions, or premium tiers. This is our promise to the community.
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-section-title">// Technical</div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Which devices can I use to watch?</div>
+                <div class="faq-answer">
+                    Our videos work on any device with internet access - computers, tablets, and smartphones. You can also download videos for offline viewing through the YouTube app.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I suggest a topic or request a video?</div>
+                <div class="faq-answer">
+                    Absolutely! We'd love to hear your suggestions. Reach out through our contact information or comment on YouTube videos. We regularly create content based on viewer requests.
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-cta">
+            <h2>Still have questions?</h2>
+            <p>We're here to help. Reach out and we'll get back to you.</p>
+            <a href="mailto:hello@sisoacademy.com" class="contact-btn">Contact Us →</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="https://yt3.googleusercontent.com/Mty-HX3cAhPKYO7v8J30Chm47gIAfqgqISFO7RN9fwt3VR4ThPuvQ6MYfzONX1z6tsxpAyfWmA=s160-c-k-c0x00ffffff-no-rj" alt="Siso Academy Logo" class="logo-img">
+            </a>
+            <a href="index.html">Siso<span>.</span>Academy</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="practice.html">Practice</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.youtube.com/@SisoAcademy" target="_blank">YouTube ↗</a>
+        </div>
+        <div class="footer-copy">© 2026 Siso Academy · All rights reserved</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
